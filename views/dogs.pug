@@ -1,14 +1,13 @@
 extends layout
-
 block content
   h1= title
-  - var dogs=[{dogName:"Bulldog",dogAge:"4",DogPrice:4000},{dogName:"Poodle",dogAge:"5",DogPrice:2000},{dogName:"Beagles",dogAge:"2",DogPrice:3500}]
-  div(class="container-fluid")
+   - let results = result;
   div(class="row")
-   each value,index  in dogs
-    div(class="col-sm-2" onclick =`buy(${index})`) #{value.dogName}, #{value.dogAge}, #{value.DogPrice}
-    script.
-        function buy(param)
-        {
-            alert(`You purchased Item ${param+1}`)
-        }
+    each value,index  in results
+      div(class="col-sm-2", onclick=`buy(${index})`) #{value.dogName}, #{value.dogAge}, #{value.DogPrice}
+  script.
+    function buy(param)
+    {
+        console.log(param);
+    }
+

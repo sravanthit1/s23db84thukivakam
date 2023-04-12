@@ -11,6 +11,7 @@ var dogsRouter = require('./routes/dogs');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
+var dogCont=express.Router();
 var dogs=require('./models/dogs');
 
 var app = express();
@@ -31,6 +32,9 @@ app.use('/dogs', dogsRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
+app.use('/dogs', dogCont);
+
+
 
 require('dotenv').config();
 const connectionString =
