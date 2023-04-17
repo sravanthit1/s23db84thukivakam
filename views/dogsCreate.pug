@@ -6,13 +6,13 @@ block content
   form(id='dogsForm', action="/resource/dogs", method="POST") 
     div.form-group 
         label.dogsAttr(for='dogName') dogs Name
-        input#name(type='text', name='dogName') 
-    div.form-group 
-        label.dogsAttr(for='DogPrice') Dog Price 
-        input#price(type='number', name='DogPrice') 
+        input#dogName(type='text', name='dogName') 
     div.form-group 
         label.dogsAttr(for='dogAge') Dog Age 
-        input#age(type='text', name='dogAge') 
+        input#dogAge(type='text', name='dogAge') 
+    div.form-group 
+        label.dogsAttr(for='DogPrice') Dog Price 
+        input#DogPrice(type='number', name='DogPrice') 
     input(class="btn btn-info",type="submit") 
  
   script. 
