@@ -42,9 +42,18 @@ exports.dogs_create_post = async function(req, res) {
 };
 
 // Handle dogs delete form on DELETE.
-exports.dogs_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: dogs delete DELETE ' + req.params.id);
-};
+exports.dogs_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await dogs.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 
 // Handle dogs update form on PUT.
 exports.dogs_update_put = async function(req, res) { 

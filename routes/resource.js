@@ -16,7 +16,7 @@ router.get('/', api_controller.api);
 router.post('/dogs', dogs_controller.dogs_create_post);
 
 // DELETE request to delete dogs.
-//router.delete('/dogs/:id', dogs_controller.dogs_delete);
+router.delete('/dogs/:id', dogs_controller.dogs_delete);
 
 // PUT request to update dogs.
 router.put('/dogs/:id', dogs_controller.dogs_update_put);
