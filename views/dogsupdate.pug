@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title 
+  - let dogsid = toShow._id 
+  - let dogName = toShow.dogName
+  - let dogAge = toShow.dogAge
+  - let DogPrice = toShow.DogPrice
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{dogsid} 
+    - let actionid = "/resource/dogs/" + dogsid
+    form(id='dogsForm', action=actionid, method="PUT") 
+      div.form-group 
+        label.dogsAttr(for='dogName') dogs Name
+        input#dogName(type='text', name='dogName',value=dogName) 
+      div.form-group 
+        label.dogsAttr(for='dogAge') Dog Age 
+        input#dogAge(type='text', name='dogAge',value=dogAge) 
+      div.form-group 
+        label.dogsAttr(for='DogPrice') Dog Price 
+        input#DogPrice(type='number', name='DogPrice',value=DogPrice) 
+      input(class="btn btn-info",type="submit") 
+ 
+  script. 
+    document.forms['dogsForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      })
+        .then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        })
+        .then((body) => { 
+          alert("Save succeded") 
+          // TODO handle body 
+        })
+        .catch((error) => { 
+          // TODO handle error 
+          alert("Save failed " + error ) 
+        }); 
+    });   
