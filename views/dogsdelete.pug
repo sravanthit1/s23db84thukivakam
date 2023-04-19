@@ -1,0 +1,52 @@
+extends layout 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let dogsid = toShow._id 
+    - let dogName = toShow.dogName 
+    - let dogAge = toShow.dogAge
+    - let DogPrice = toShow.DogPrice
+    - let actionid = "/resource/dogs/" + dogsid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='dogsAttr mr-3') dogs ID is: 
+        div #{dogsid} 
+      div.row 
+        div(class='dogsAttr mr-3') dogs Name is: 
+        div #{dogName} 
+      div.row 
+        div(class='dogsAttr mr-3') dogs Age is: 
+        div #{dogAge} 
+      div.row 
+        div(class='dogsAttr mr-3') dogs Price is: 
+        div #{DogPrice} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the desiRestaruant collection 
+      window.location.href='/dogs' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Dont need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/dogs' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
