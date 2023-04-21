@@ -1,13 +1,23 @@
 extends layout
+
 block content
   h1= title
-   - let results = result;
-  div(class="row")
-    each value,index  in results
-      div(class="col-sm-2", onclick=`buy(${index})`) #{value.dogName}, #{value.dogAge}, #{value.DogPrice}
+  - let items = result;
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch(\"/dogs/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") 
+          | Item #{item.dogName}(#{item.dogAge}) is #{item.DogPrice}
+          button.btn(class="btn-primary ml-1", onclick= destination) Update
+
   script.
-    function buy(param)
-    {
-        console.log(param);
+    function buy(param) {
+      console.log(param);
+    }
+
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
 
